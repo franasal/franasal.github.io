@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vegan-dev</title>
+  <meta
+    name="description"
+    content="Websites, apps, and data tools for vegan and mission-driven projects."
+  />
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --surface: #fffdf8;
+      --text: #1f2a22;
+      --muted: #5c675f;
+      --line: #d9d3c8;
+      --accent: #2f6b4f;
+      --accent-2: #dbe8dc;
+      --max: 1080px;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 245, 239, 0.86);
+      border-bottom: 1px solid rgba(217, 211, 200, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 5.5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--accent-2);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin: 0 0 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.8rem);
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      max-width: 58ch;
+      color: var(--muted);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-list {
+      display: grid;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-list li {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    section {
+      padding: 2rem 0 4rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 50ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0.6rem 0 0;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: #eef2ed;
+      color: #425247;
+      border: 1px solid #dde3db;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .about p {
+      color: var(--muted);
+    }
+
+    .contact-box {
+      background: linear-gradient(180deg, #ffffff, #f3f7f2);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 1.7rem;
+      box-shadow: var(--shadow);
+    }
+
+    footer {
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .projects-grid,
+      .services-grid,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">vgn-dev</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">vegan tech · public interest · education</div>
+          <h1>Digital tools for vegan and mission-driven projects</h1>
+          <p class="lead">
+            I build websites, apps, interactive tools, and data-driven platforms for
+            sanctuaries, NGOs, educators, and ethical teams.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#projects">View projects</a>
+            <a class="btn" href="#contact">Work with me</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Highlights">
+          <ul class="hero-list">
+            <li>
+              <strong>Custom apps and tools</strong><br />
+              From lightweight educational tools to more structured data platforms.
+            </li>
+            <li>
+              <strong>Vegan and values-aligned focus</strong><br />
+              Built with a strong understanding of animal advocacy, education, and food systems.
+            </li>
+            <li>
+              <strong>Small to mid-size projects</strong><br />
+              A practical fit for teams that need thoughtful work without agency bloat.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Selected projects</h2>
+            <p>Three examples of the kind of work I do across transparency, education, and animal storytelling.</p>
+          </div>
+        </div>
+
+        <div class="grid projects-grid">
+          <article class="card">
+            <h3>Schlachtindustrie Deutschland</h3>
+            <p>
+              A data-driven platform about the slaughter industry in Germany, bringing together public data,
+              company structures, site information, capacities, and reports into a searchable map and database.
+            </p>
+            <div class="tag-row">
+              <span class="tag">data platform</span>
+              <span class="tag">mapping</span>
+              <span class="tag">public interest tech</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Wild Forager</h3>
+            <p>
+              A mobile app for learning about edible wild plants in Germany, combining biodiversity observations,
+              plant profiles, seasonality, and look-alike warnings for careful place-based learning.
+            </p>
+            <div class="tag-row">
+              <span class="tag">mobile app</span>
+              <span class="tag">education</span>
+              <span class="tag">safety-focused UX</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Tiere von Bullerbyn</h3>
+            <p>
+              An interactive digital project for getting to know and identifying rescued pigs at Vegan Bullerbyn,
+              using visual traits and a playful decision-tree approach.
+            </p>
+            <div class="tag-row">
+              <span class="tag">interactive learning</span>
+              <span class="tag">animal sanctuary</span>
+              <span class="tag">frontend</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Services</h2>
+            <p>Good for small to mid-size projects that need a useful digital tool, not performative tech theater.</p>
+          </div>
+        </div>
+
+        <div class="grid services-grid">
+          <article class="card">
+            <h3>Websites and landing pages</h3>
+            <p>Clear, values-aligned websites for initiatives, projects, sanctuaries, and ethical businesses.</p>
+          </article>
+
+          <article class="card">
+            <h3>Custom web apps</h3>
+            <p>Interactive tools, maps, searchable platforms, and project-specific interfaces.</p>
+          </article>
+
+          <article class="card">
+            <h3>Data and automation</h3>
+            <p>Data cleaning, imports, structured databases, scraping, and practical automation pipelines.</p>
+          </article>
+
+          <article class="card">
+            <h3>Educational digital tools</h3>
+            <p>Story-based interfaces, identification tools, explainers, and learning-focused digital experiences.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div>
+          <h2>About</h2>
+        </div>
+        <div class="card">
+          <p>
+            I build digital tools at the intersection of vegan advocacy, public learning, and practical software.
+          </p>
+          <p>
+            My work includes educational apps, data-heavy platforms, and small custom tools for projects that care about animals,
+            ecology, and social impact.
+          </p>
+          <p>
+            I am especially interested in work that is thoughtful, useful, and grounded in a clear purpose.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let’s build something useful</h2>
+          <p class="lead">
+            If you’re working on a vegan, educational, sanctuary, or mission-driven project and need help with a website,
+            app, or data tool, get in touch.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="mailto:hello@example.com">hello@example.com</a>
+            <a class="btn" href="https://github.com/franasal" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Mit tierischer Liebe entwickelt von vgn-dev.</p>
+    </div>
+  </footer>
+</body>
+</html>
