@@ -991,13 +991,13 @@
         </div>
       </section>
 
-      <!-- 4. DATAx -->
+      <!-- 4. DATAxHub -->
       <section class="project-section project-datax">
         <div class="container reveal">
           <div class="project-layout reverse">
             <div class="project-header">
               <span class="project-label" id="label-datax">EdTech &middot; Universität</span>
-              <h2 id="title-datax">DATAx &mdash; Leuphana Universität</h2>
+              <h2 id="title-datax">DATAxHub &mdash; Leuphana Universität</h2>
               <p id="desc-datax-1">
                 Konzeptentwicklung, Lehrunterstützung und Testing für eine interdisziplinäre Initiative zu Datenkompetenz an der Leuphana Universität. Das Projekt verband Programmierung, Datenanalyse, Visualisierung und ethische Reflexion, um ein kritisches und verantwortungsvolles Verständnis von Daten über Studienrichtungen hinweg zu fördern.
               </p>
@@ -1013,6 +1013,11 @@
                 <span class="tag">Datenkompetenz</span>
                 <span class="tag">Konzeptentwicklung</span>
                 <span class="tag">Lehrunterstützung</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link" href="https://dataxhub-leuphana.gwdg.de/" target="_blank" rel="noreferrer" id="link-datax">
+                  Projekt ansehen <span>&rarr;</span>
+                </a>
               </div>
             </div>
             <div class="project-media">
@@ -1153,7 +1158,7 @@
         roleBullerbyn: 'Meine Rolle: Frontend-Umsetzung, interaktive Logik und Entscheidungsbaum-Design.',
         tagsBullerbyn: '<span class="tag">Vue.js</span><span class="tag">Entscheidungsbaum-Logik</span><span class="tag">Interaktives Lernen</span><span class="tag">Lebenshof</span>',
         labelDatax: 'EdTech &middot; Universität',
-        titleDatax: 'DATAx &mdash; Leuphana Universität',
+        titleDatax: 'DATAxHub &mdash; Leuphana Universität',
         descDatax1: 'Konzeptentwicklung, Lehrunterstützung und Testing für eine interdisziplinäre Initiative zu Datenkompetenz an der Leuphana Universität. Das Projekt verband Programmierung, Datenanalyse, Visualisierung und ethische Reflexion, um ein kritisches und verantwortungsvolles Verständnis von Daten über Studienrichtungen hinweg zu fördern.',
         descDatax2: 'DATAxHub, eine auf JupyterHub basierende Lernplattform, ermöglichte mehr als 1.200 Erstsemester-Student*innen, direkt im Browser interaktiv mit Python und Datenanalyse zu arbeiten.',
         roleDatax: 'Meine Rolle: Konzeptentwicklung, Testing, Lehrunterstützung und plattformnahe Umsetzung.',
@@ -1211,7 +1216,7 @@
         roleBullerbyn: 'My role: frontend implementation, interactive logic, and decision-tree design.',
         tagsBullerbyn: '<span class="tag">Vue.js</span><span class="tag">Decision-tree logic</span><span class="tag">Interactive learning</span><span class="tag">Animal sanctuary</span>',
         labelDatax: 'EdTech &middot; University',
-        titleDatax: 'DATAx &mdash; Leuphana University',
+        titleDatax: 'DATAxHub &mdash; Leuphana University',
         descDatax1: 'Concept development, teaching support, and testing for an interdisciplinary data literacy initiative at Leuphana University. The project combined programming, data analysis, visualization, and ethical reflection to promote critical, responsible understanding of data across fields of study.',
         descDatax2: 'DATAxHub, a JupyterHub-based learning platform, enabled more than 1,200 first-semester students to work interactively with Python and data analysis directly in their browser.',
         roleDatax: 'My role: concept development, testing, teaching support, and platform-related implementation.',
@@ -1308,6 +1313,7 @@
       document.getElementById('link-schlacht').innerHTML = copy.linkProject;
       document.getElementById('link-forager').innerHTML = copy.linkProject;
       document.getElementById('link-bullerbyn').innerHTML = copy.linkProject;
+      document.getElementById('link-datax').innerHTML = copy.linkProject;
       const brandIcon = document.querySelector('.brand-icon');
       if (brandIcon) brandIcon.alt = copy.brandAlt;
       document.querySelector('.hero-mark').alt = copy.heroAlt;
