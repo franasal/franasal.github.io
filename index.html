@@ -3,305 +3,567 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vegan-dev</title>
-  <meta
-    name="description"
-    content="Websites, apps, and data tools for vegan and mission-driven projects."
-  />
+  <title>vgn-dev — Francisco (Pacho) Arcila</title>
+  <meta name="description" content="Digital tools for vegan, educational, and mission-driven projects. By Francisco (Pacho) Arcila." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f5ef;
-      --surface: #fffdf8;
-      --text: #1f2a22;
-      --muted: #5c675f;
-      --line: #d9d3c8;
-      --accent: #2f6b4f;
-      --accent-2: #dbe8dc;
-      --max: 1080px;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #e8e6e1;
+      --muted: #8a8880;
+      --line: rgba(255,255,255,0.08);
+      --max: 1200px;
+      --radius: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       width: min(calc(100% - 2rem), var(--max));
       margin: 0 auto;
     }
 
+    /* ── HEADER ── */
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-      background: rgba(247, 245, 239, 0.86);
-      border-bottom: 1px solid rgba(217, 211, 200, 0.8);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.7);
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav {
+    .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      padding: 0.9rem 0;
+      padding: 1rem 0;
     }
 
     .brand {
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 1.1rem;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .hero {
-      padding: 5.5rem 0 4rem;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      background: var(--accent-2);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 0.35rem 0.75rem;
       font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      font-weight: 600;
+      transition: color 0.2s;
     }
 
-    h1, h2, h3 {
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin: 0 0 1rem;
-    }
+    .nav-links a:hover { color: var(--text); }
 
-    h1 {
-      font-size: clamp(2.5rem, 5vw, 4.8rem);
-    }
-
-    h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-    }
-
-    h3 {
-      font-size: 1.25rem;
-    }
-
-    .lead {
-      font-size: 1.1rem;
-      max-width: 58ch;
-      color: var(--muted);
-    }
-
-    .button-row {
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
       display: flex;
-      gap: 0.9rem;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 1rem 4rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(47,107,79,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(180,60,40,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(60,100,160,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #e8e6e1 30%, #8a8880 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-intro {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-intro a {
+      color: var(--text);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s;
+    }
+
+    .hero-intro a:hover {
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 1.6rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 0.9rem 1.15rem;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
       border-radius: 999px;
-      border: 1px solid var(--line);
       font-weight: 700;
-      transition: transform 0.15s ease, background 0.15s ease;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s;
+      cursor: pointer;
     }
 
-    .btn:hover {
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: #2f6b4f;
+      color: #fff;
+      border-color: #2f6b4f;
+    }
+
+    .btn-primary:hover { background: #377d5c; }
+
+    .btn-ghost { color: var(--muted); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
+    /* ── SCROLL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── PROJECT SECTIONS ── */
+    .project-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-section + .project-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .project-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .project-header h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .project-header p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 1.2rem;
+    }
+
+    .project-header a.project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: gap 0.2s;
+    }
+
+    .project-header a.project-link:hover { gap: 0.7rem; }
+
+    .project-logo {
+      height: 36px;
+      width: auto;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .project-logo-round {
+      height: 44px;
+      width: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    /* Android download button */
+    .btn-android {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s;
+    }
+
+    .btn-android:hover {
+      background: #222;
+      border-color: rgba(255,255,255,0.25);
       transform: translateY(-1px);
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
-    .hero-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: calc(var(--radius) + 4px);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-list {
-      display: grid;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .hero-list li {
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-list li:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    section {
-      padding: 2rem 0 4rem;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 50ch;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.2rem;
-    }
-
-    .projects-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .services-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-    }
-
-    .card p {
-      color: var(--muted);
-      margin: 0.6rem 0 0;
+    .btn-android svg {
+      flex-shrink: 0;
     }
 
     .tag-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 1rem;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
     }
 
     .tag {
-      display: inline-block;
       font-size: 0.8rem;
-      padding: 0.28rem 0.55rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 999px;
-      background: #eef2ed;
-      color: #425247;
-      border: 1px solid #dde3db;
+      font-weight: 600;
     }
 
-    .about {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 1.4rem;
-      align-items: start;
+    /* ── SCHLACHTINDUSTRIE ── */
+    .project-schlacht { background: linear-gradient(180deg, #0a0a0a 0%, #120d0d 50%, #0a0a0a 100%); }
+    .project-schlacht .project-label { background: rgba(180,60,40,0.15); color: #d4735a; }
+    .project-schlacht .project-link { color: #d4735a; }
+    .project-schlacht .tag { background: rgba(180,60,40,0.1); color: #d4735a; border: 1px solid rgba(180,60,40,0.2); }
+
+    .iframe-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(180,60,40,0.15);
+      box-shadow: 0 20px 60px rgba(180,60,40,0.08);
+      aspect-ratio: 4/3;
+      background: #1a1212;
     }
 
-    .about p {
-      color: var(--muted);
+    .iframe-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
-    .contact-box {
-      background: linear-gradient(180deg, #ffffff, #f3f7f2);
+    /* ── WILD FORAGER ── */
+    .project-forager { background: linear-gradient(180deg, #0a0a0a 0%, #0a100d 50%, #0a0a0a 100%); }
+    .project-forager .project-label { background: rgba(60,140,80,0.15); color: #5cb870; }
+    .project-forager .project-link { color: #5cb870; }
+    .project-forager .tag { background: rgba(60,140,80,0.1); color: #5cb870; border: 1px solid rgba(60,140,80,0.2); }
+
+    /* ── BULLERBYN ── */
+    .project-bullerbyn { background: linear-gradient(180deg, #0a0a0a 0%, #100e0a 50%, #0a0a0a 100%); }
+    .project-bullerbyn .project-label { background: rgba(190,150,60,0.15); color: #d4b254; }
+    .project-bullerbyn .project-link { color: #d4b254; }
+    .project-bullerbyn .tag { background: rgba(190,150,60,0.1); color: #d4b254; border: 1px solid rgba(190,150,60,0.2); }
+
+    /* ── DATAX ── */
+    .project-datax { background: linear-gradient(180deg, #0a0a0a 0%, #0a0d12 50%, #0a0a0a 100%); }
+    .project-datax .project-label { background: rgba(60,120,200,0.15); color: #5a9ed4; }
+    .project-datax .project-link { color: #5a9ed4; }
+    .project-datax .tag { background: rgba(60,120,200,0.1); color: #5a9ed4; border: 1px solid rgba(60,120,200,0.2); }
+
+    /* ── SCREENSHOT / MEDIA ── */
+    .media-frame {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: calc(var(--radius) + 6px);
-      padding: 1.7rem;
-      box-shadow: var(--shadow);
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    footer {
-      padding: 1.5rem 0 3rem;
+    .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-placeholder {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .project-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .project-layout.reverse {
+      grid-template-columns: 1.2fr 1fr;
+    }
+
+    .project-layout.reverse .project-header {
+      order: 2;
+    }
+
+    .project-layout.reverse .project-media {
+      order: 1;
+    }
+
+    /* ── PHONE MOCKUP for Wild Forager ── */
+    .phone-mockup {
+      width: 280px;
+      margin: 0 auto;
+      border-radius: 36px;
+      border: 3px solid rgba(255,255,255,0.12);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      aspect-ratio: 9/19;
+      background: #111;
+      position: relative;
+    }
+
+    .phone-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      padding: 6rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .services-head {
+      margin-bottom: 3rem;
+    }
+
+    .services-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .services-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 55ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: border-color 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
       color: var(--muted);
       font-size: 0.95rem;
     }
 
+    /* ── ABOUT ── */
+    #about {
+      padding: 6rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.4fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-layout h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      max-width: 60ch;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-highlight {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-inner {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .footer-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-sub {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-grid,
-      .projects-grid,
-      .services-grid,
-      .about {
+      .project-layout,
+      .project-layout.reverse {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 4rem;
-      }
+      .project-layout.reverse .project-header { order: 1; }
+      .project-layout.reverse .project-media { order: 2; }
 
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
     @media (max-width: 640px) {
-      .nav {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 0.8rem;
-      }
+      .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding-top: 7rem; min-height: auto; }
+      .project-section { padding: 4rem 0; }
+      .phone-mockup { width: 220px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="container nav">
+    <div class="container nav-inner">
       <a class="brand" href="#top">vgn-dev</a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#projects">Projects</a>
@@ -313,166 +575,283 @@
   </header>
 
   <main id="top">
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">vegan tech · public interest · education</div>
-          <h1>Digital tools for vegan and mission-driven projects</h1>
-          <p class="lead">
-            I build websites, apps, interactive tools, and data-driven platforms for
-            sanctuaries, NGOs, educators, and ethical teams.
-          </p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="#projects">View projects</a>
-            <a class="btn" href="#contact">Work with me</a>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="Highlights">
-          <ul class="hero-list">
-            <li>
-              <strong>Custom apps and tools</strong><br />
-              From lightweight educational tools to more structured data platforms.
-            </li>
-            <li>
-              <strong>Vegan and values-aligned focus</strong><br />
-              Built with a strong understanding of animal advocacy, education, and food systems.
-            </li>
-            <li>
-              <strong>Small to mid-size projects</strong><br />
-              A practical fit for teams that need thoughtful work without agency bloat.
-            </li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Selected projects</h2>
-            <p>Three examples of the kind of work I do across transparency, education, and animal storytelling.</p>
-          </div>
-        </div>
-
-        <div class="grid projects-grid">
-          <article class="card">
-            <h3>Schlachtindustrie Deutschland</h3>
-            <p>
-              A data-driven platform about the slaughter industry in Germany, bringing together public data,
-              company structures, site information, capacities, and reports into a searchable map and database.
-            </p>
-            <div class="tag-row">
-              <span class="tag">data platform</span>
-              <span class="tag">mapping</span>
-              <span class="tag">public interest tech</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Wild Forager</h3>
-            <p>
-              A mobile app for learning about edible wild plants in Germany, combining biodiversity observations,
-              plant profiles, seasonality, and look-alike warnings for careful place-based learning.
-            </p>
-            <div class="tag-row">
-              <span class="tag">mobile app</span>
-              <span class="tag">education</span>
-              <span class="tag">safety-focused UX</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Tiere von Bullerbyn</h3>
-            <p>
-              An interactive digital project for getting to know and identifying rescued pigs at Vegan Bullerbyn,
-              using visual traits and a playful decision-tree approach.
-            </p>
-            <div class="tag-row">
-              <span class="tag">interactive learning</span>
-              <span class="tag">animal sanctuary</span>
-              <span class="tag">frontend</span>
-            </div>
-          </article>
+      <div class="hero-content">
+        <h1>vgn-dev</h1>
+        <p class="hero-intro">
+          I build digital tools for vegan and mission-driven projects, with a focus on education, transparency, and animal advocacy.
+          My work includes <a href="https://schlachtindustrie.de/" target="_blank" rel="noreferrer">Schlachtindustrie Deutschland</a>,
+          <a href="https://wildforager.org/" target="_blank" rel="noreferrer">Wild Forager</a>, and interactive projects like
+          <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">Tiere von Bullerbyn</a>.
+          I'm also closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">Vegan Bullerbyn</a>,
+          a sanctuary that feels like a second home to me and continues to shape the kind of work I want to do:
+          useful, thoughtful, and grounded in real care for animals.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Work with me</a>
         </div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
+    <div id="projects">
+
+      <!-- 1. SCHLACHTINDUSTRIE -->
+      <section class="project-section project-schlacht">
+        <div class="container reveal">
+          <div class="project-layout">
+            <div class="project-header">
+              <span class="project-label">Data Platform</span>
+              <h2>Schlachtindustrie Deutschland</h2>
+              <p>
+                A data-driven platform bringing together public data about the slaughter industry in Germany &mdash;
+                company structures, site information, capacities, and reports into a searchable map and database.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Vue.js</span>
+                <span class="tag">mapping</span>
+                <span class="tag">data visualization</span>
+                <span class="tag">public interest</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link" href="https://schlachtindustrie.de/" target="_blank" rel="noreferrer">
+                  Visit project <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+            <div class="project-media">
+              <div class="iframe-wrap">
+                <iframe
+                  src="https://schlachtindustrie.de/embed/karte/"
+                  title="Schlachtindustrie Deutschland – Karte"
+                  loading="lazy"
+                  sandbox="allow-scripts allow-same-origin"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. WILD FORAGER -->
+      <section class="project-section project-forager">
+        <div class="container reveal">
+          <div class="project-layout reverse">
+            <div class="project-header">
+              <span class="project-label">Mobile App</span>
+              <h2>Wild Forager</h2>
+              <p>
+                A mobile app for learning about edible wild plants in Germany. Combines biodiversity observations,
+                plant profiles, seasonality, and look-alike warnings for careful, place-based learning.
+              </p>
+              <div class="tag-row">
+                <span class="tag">React Native</span>
+                <span class="tag">education</span>
+                <span class="tag">biodiversity</span>
+                <span class="tag">safety-focused UX</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link" href="https://wildforager.org/" target="_blank" rel="noreferrer">
+                  Visit project <span>&rarr;</span>
+                </a>
+                <a class="btn-android" href="https://play.google.com/store/apps/details?id=com.wild_forager" target="_blank" rel="noreferrer">
+                  <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.21 0.95L12.04 11L1.21 21.05C0.83 20.55 0.61 19.87 0.61 19.07V2.93C0.61 2.13 0.83 1.45 1.21 0.95Z" fill="#5cb870"/>
+                    <path d="M15.54 7.54L12.04 11L15.54 14.46L19.68 12.14C20.14 11.88 20.14 11.12 19.68 10.86L15.54 7.54Z" fill="#FFCE3E"/>
+                    <path d="M1.21 0.95L12.04 11L15.54 7.54L3.09 0.18C2.58 -0.12 1.98 0.05 1.21 0.95Z" fill="#F14F4C"/>
+                    <path d="M1.21 21.05L12.04 11L15.54 14.46L3.09 21.82C2.58 22.12 1.98 21.95 1.21 21.05Z" fill="#4285F4"/>
+                  </svg>
+                  Android herunterladen
+                </a>
+              </div>
+            </div>
+            <div class="project-media" style="display:flex;justify-content:center;">
+              <div class="phone-mockup">
+                <!-- Replace with actual screenshot: <img src="img/wildforager-screen.png" alt="Wild Forager app screenshot" /> -->
+                <div class="media-placeholder" style="height:100%;display:flex;align-items:center;justify-content:center;">
+                  <span>screenshot<br>wildforager</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. TIERE VON BULLERBYN -->
+      <section class="project-section project-bullerbyn">
+        <div class="container reveal">
+          <div class="project-layout">
+            <div class="project-header">
+              <span class="project-label">Interactive Tool</span>
+              <h2>Tiere von Bullerbyn</h2>
+              <p>
+                An interactive project for getting to know and identifying rescued pigs at Vegan Bullerbyn,
+                using visual traits and a playful decision-tree approach. Built with love for the animals.
+              </p>
+              <div class="tag-row">
+                <span class="tag">Vue.js</span>
+                <span class="tag">animal sanctuary</span>
+                <span class="tag">interactive learning</span>
+              </div>
+              <div class="project-actions">
+                <a class="project-link" href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">
+                  Visit project <span>&rarr;</span>
+                </a>
+              </div>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" style="border-color: rgba(190,150,60,0.15); box-shadow: 0 20px 60px rgba(190,150,60,0.06); background: #13110d;">
+                <!-- Replace with actual screenshot: <img src="img/bullerbyn-screen.png" alt="Tiere von Bullerbyn screenshot" /> -->
+                <div class="media-placeholder">
+                  <span>screenshot<br>Tiere von Bullerbyn</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. DATAx -->
+      <section class="project-section project-datax">
+        <div class="container reveal">
+          <div class="project-layout reverse">
+            <div class="project-header">
+              <span class="project-label">EdTech &middot; University</span>
+              <h2>DATAx &mdash; Leuphana University</h2>
+              <p>
+                Concept developer and tester for an interdisciplinary approach to data literacy.
+                The project combined programming, data analysis, visualization, and ethical reflection
+                to promote critical, responsible understanding of data across all fields of study.
+              </p>
+              <p style="margin-top:0.8rem;">
+                DATAxHub, a JupyterHub-based learning platform, enabled over 1,200 first-semester students
+                to work interactively with Python and data analysis directly in their browser.
+              </p>
+              <div class="tag-row">
+                <span class="tag">JupyterHub</span>
+                <span class="tag">Python</span>
+                <span class="tag">data literacy</span>
+                <span class="tag">curriculum design</span>
+              </div>
+            </div>
+            <div class="project-media">
+              <div class="media-frame" style="border-color: rgba(60,120,200,0.15); box-shadow: 0 20px 60px rgba(60,120,200,0.06); background: #0d0f13;">
+                <!-- Replace with actual screenshot: <img src="img/datax-screen.png" alt="DATAxHub platform screenshot" /> -->
+                <div class="media-placeholder">
+                  <span>screenshot<br>DATAxHub</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SERVICES -->
     <section id="services">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Services</h2>
-            <p>Good for small to mid-size projects that need a useful digital tool, not performative tech theater.</p>
-          </div>
+        <div class="services-head reveal">
+          <h2>What I do</h2>
+          <p>Practical digital work for small to mid-size projects that need a useful tool, not performative tech theater.</p>
         </div>
-
-        <div class="grid services-grid">
-          <article class="card">
-            <h3>Websites and landing pages</h3>
-            <p>Clear, values-aligned websites for initiatives, projects, sanctuaries, and ethical businesses.</p>
-          </article>
-
-          <article class="card">
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <h3>Websites &amp; landing pages</h3>
+            <p>Clear, values-aligned websites for initiatives, sanctuaries, and ethical businesses.</p>
+          </div>
+          <div class="service-card reveal">
             <h3>Custom web apps</h3>
             <p>Interactive tools, maps, searchable platforms, and project-specific interfaces.</p>
-          </article>
-
-          <article class="card">
-            <h3>Data and automation</h3>
-            <p>Data cleaning, imports, structured databases, scraping, and practical automation pipelines.</p>
-          </article>
-
-          <article class="card">
-            <h3>Educational digital tools</h3>
+          </div>
+          <div class="service-card reveal">
+            <h3>Data &amp; automation</h3>
+            <p>Data cleaning, structured databases, scraping, and practical automation pipelines.</p>
+          </div>
+          <div class="service-card reveal">
+            <h3>Educational tools</h3>
             <p>Story-based interfaces, identification tools, explainers, and learning-focused digital experiences.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container about">
-        <div>
-          <h2>About</h2>
-        </div>
-        <div class="card">
-          <p>
-            I build digital tools at the intersection of vegan advocacy, public learning, and practical software.
-          </p>
-          <p>
-            My work includes educational apps, data-heavy platforms, and small custom tools for projects that care about animals,
-            ecology, and social impact.
-          </p>
-          <p>
-            I am especially interested in work that is thoughtful, useful, and grounded in a clear purpose.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <h2>Let’s build something useful</h2>
-          <p class="lead">
-            If you’re working on a vegan, educational, sanctuary, or mission-driven project and need help with a website,
-            app, or data tool, get in touch.
-          </p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="mailto:hello@example.com">hello@example.com</a>
-            <a class="btn" href="https://github.com/franasal" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="about-layout reveal">
+          <div>
+            <h2>About</h2>
+          </div>
+          <div class="about-text">
+            <p>
+              My background spans data science, concept development, and hands-on building &mdash;
+              from university data literacy programs reaching over 1,200 students
+              to interactive tools for animal sanctuaries.
+            </p>
+            <p>
+              I'm closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer" style="color:#d4b254;font-weight:600;">Vegan Bullerbyn</a>,
+              a sanctuary that feels like a second home to me and continues to shape the kind of work
+              I want to do: <span class="about-highlight">useful, thoughtful, and grounded in real care for animals.</span>
+            </p>
+            <p>
+              I care about building things that are honest, functional, and made to last &mdash;
+              not to impress.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-inner reveal">
+          <h2>Let's build something useful</h2>
+          <p>
+            Working on a vegan, educational, or mission-driven project?
+            I'd like to hear about it.
+          </p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:hello@example.com">Get in touch</a>
+            <a class="btn btn-ghost" href="https://github.com/franasal" target="_blank" rel="noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/francisco-arcila-98197110a" target="_blank" rel="noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>Mit tierischer Liebe entwickelt von vgn-dev.</p>
+      <div class="footer-name">Francisco (Pacho) Arcila</div>
+      <div class="footer-sub">vgn-dev &middot; digital tools for a kinder world</div>
     </div>
   </footer>
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
