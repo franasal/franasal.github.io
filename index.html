@@ -9,6 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Survivant';
+      src: url('assets/fonts/survivant.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #0a0a0a;
       --surface: #141414;
@@ -55,9 +63,20 @@
     }
 
     .brand {
-      font-weight: 900;
-      font-size: 1.15rem;
-      letter-spacing: -0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: Survivant, Inter, sans-serif;
+      font-weight: normal;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: block;
     }
 
     .nav-links {
@@ -102,12 +121,29 @@
       max-width: 860px;
     }
 
-    .hero h1 {
-      font-size: clamp(3.5rem, 10vw, 8rem);
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      line-height: 0.9;
+    .hero-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 2rem;
+    }
+
+    .hero-mark {
+      width: clamp(96px, 9vw, 128px);
+      height: clamp(96px, 9vw, 128px);
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: block;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+    }
+
+    .hero h1 {
+      font-family: 'Survivant', Inter, sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      line-height: 0.9;
+      margin: 0;
       background: linear-gradient(135deg, #e8e6e1 30%, #8a8880 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -237,20 +273,36 @@
 
     .project-header a.project-link:hover { gap: 0.7rem; }
 
+    .project-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 0.8rem;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
     .project-logo {
       height: 36px;
       width: auto;
-      margin-bottom: 0.8rem;
       display: block;
     }
 
     .project-logo-round {
       height: 44px;
-      width: 44px;
+      width: auto;
+      display: block;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 0.8rem;
-      display: block;
+      border: 3px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
     }
 
     /* Android download button */
@@ -391,10 +443,12 @@
       position: relative;
     }
 
-    .phone-mockup img {
+    .phone-mockup img,
+    .phone-mockup iframe {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border: none;
     }
 
     /* ── SERVICES ── */
@@ -564,7 +618,10 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a class="brand" href="#top">vgn-dev</a>
+      <a class="brand" href="#top">
+        <img src="assets/img/vgn-dev-icon.png" alt="vgn-dev icon" class="brand-icon" />
+        <span>vgn-dev</span>
+      </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#projects">Projects</a>
         <a href="#services">Services</a>
@@ -579,13 +636,16 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <h1>vgn-dev</h1>
+        <div class="hero-title">
+          <img src="assets/img/vgn-dev-icon.png" alt="vgn-dev icon" class="hero-mark" />
+          <h1>vgn-dev</h1>
+        </div>
         <p class="hero-intro">
           I build digital tools for vegan and mission-driven projects, with a focus on education, transparency, and animal advocacy.
           My work includes <a href="https://schlachtindustrie.de/" target="_blank" rel="noreferrer">Schlachtindustrie Deutschland</a>,
           <a href="https://wildforager.org/" target="_blank" rel="noreferrer">Wild Forager</a>, and interactive projects like
           <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">Tiere von Bullerbyn</a>.
-          I'm also closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">Vegan Bullerbyn</a>,
+          I'm also closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer">Vegan.Bullerbyn</a>,
           a sanctuary that feels like a second home to me and continues to shape the kind of work I want to do:
           useful, thoughtful, and grounded in real care for animals.
         </p>
@@ -604,14 +664,20 @@
         <div class="container reveal">
           <div class="project-layout">
             <div class="project-header">
+              <div class="project-logo-badge">
+                <img src="assets/img/Faba_Logo.svg" alt="FABA logo" class="project-logo" />
+              </div>
               <span class="project-label">Data Platform</span>
               <h2>Schlachtindustrie Deutschland</h2>
               <p>
                 A data-driven platform bringing together public data about the slaughter industry in Germany &mdash;
                 company structures, site information, capacities, and reports into a searchable map and database.
+                Built the backend infrastructure and data pipeline for this project in collaboration with
+                <a href="https://www.faba.earth" target="_blank" rel="noreferrer" style="color:#d4735a;font-weight:600;">FABA e.V.</a>
               </p>
               <div class="tag-row">
                 <span class="tag">Vue.js</span>
+                <span class="tag">backend</span>
                 <span class="tag">mapping</span>
                 <span class="tag">data visualization</span>
                 <span class="tag">public interest</span>
@@ -641,6 +707,7 @@
         <div class="container reveal">
           <div class="project-layout reverse">
             <div class="project-header">
+              <img src="assets/img/wild_forager_logo_mid.png" alt="Wild Forager logo" class="project-logo" />
               <span class="project-label">Mobile App</span>
               <h2>Wild Forager</h2>
               <p>
@@ -670,10 +737,7 @@
             </div>
             <div class="project-media" style="display:flex;justify-content:center;">
               <div class="phone-mockup">
-                <!-- Replace with actual screenshot: <img src="img/wildforager-screen.png" alt="Wild Forager app screenshot" /> -->
-                <div class="media-placeholder" style="height:100%;display:flex;align-items:center;justify-content:center;">
-                  <span>screenshot<br>wildforager</span>
-                </div>
+                <img src="assets/img/screenshotapp.jpg" alt="Wild Forager app screenshot" />
               </div>
             </div>
           </div>
@@ -685,10 +749,13 @@
         <div class="container reveal">
           <div class="project-layout">
             <div class="project-header">
+              <div class="project-logo-badge">
+                <img src="assets/img/logobulerbyn_gross.webp" alt="Vegan.Bullerbyn logo" class="project-logo-round" />
+              </div>
               <span class="project-label">Interactive Tool</span>
               <h2>Tiere von Bullerbyn</h2>
               <p>
-                An interactive project for getting to know and identifying rescued pigs at Vegan Bullerbyn,
+                An interactive project for getting to know and identifying rescued pigs at Vegan.Bullerbyn,
                 using visual traits and a playful decision-tree approach. Built with love for the animals.
               </p>
               <div class="tag-row">
@@ -703,11 +770,8 @@
               </div>
             </div>
             <div class="project-media">
-              <div class="media-frame" style="border-color: rgba(190,150,60,0.15); box-shadow: 0 20px 60px rgba(190,150,60,0.06); background: #13110d;">
-                <!-- Replace with actual screenshot: <img src="img/bullerbyn-screen.png" alt="Tiere von Bullerbyn screenshot" /> -->
-                <div class="media-placeholder">
-                  <span>screenshot<br>Tiere von Bullerbyn</span>
-                </div>
+              <div class="phone-mockup" style="border-color: rgba(190,150,60,0.2); box-shadow: 0 30px 80px rgba(190,150,60,0.08);">
+                <img src="assets/img/veganienTiere.png" alt="Tiere von Bullerbyn screenshot" />
               </div>
             </div>
           </div>
@@ -739,10 +803,7 @@
             </div>
             <div class="project-media">
               <div class="media-frame" style="border-color: rgba(60,120,200,0.15); box-shadow: 0 20px 60px rgba(60,120,200,0.06); background: #0d0f13;">
-                <!-- Replace with actual screenshot: <img src="img/datax-screen.png" alt="DATAxHub platform screenshot" /> -->
-                <div class="media-placeholder">
-                  <span>screenshot<br>DATAxHub</span>
-                </div>
+                <img src="assets/img/datax.png" alt="DATAxHub platform screenshot" />
               </div>
             </div>
           </div>
@@ -784,7 +845,8 @@
       <div class="container">
         <div class="about-layout reveal">
           <div>
-            <h2>About</h2>
+            <img src="assets/img/profil.jpeg" alt="Francisco (Pacho) Arcila" class="profile-pic" />
+            <h2 style="margin-top:1rem;">About</h2>
           </div>
           <div class="about-text">
             <p>
@@ -793,13 +855,14 @@
               to interactive tools for animal sanctuaries.
             </p>
             <p>
-              I'm closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer" style="color:#d4b254;font-weight:600;">Vegan Bullerbyn</a>,
+              I'm closely connected to <a href="https://veganbullerbyn.de/" target="_blank" rel="noreferrer" style="color:#d4b254;font-weight:600;">Vegan.Bullerbyn</a>,
               a sanctuary that feels like a second home to me and continues to shape the kind of work
               I want to do: <span class="about-highlight">useful, thoughtful, and grounded in real care for animals.</span>
             </p>
             <p>
-              I care about building things that are honest, functional, and made to last &mdash;
-              not to impress.
+              I use AI to manage and optimize processes across my projects &mdash;
+              not as a shortcut, but as a tool for doing better work.
+              <span class="about-highlight">AI for good:</span> accelerating impact for causes that matter.
             </p>
           </div>
         </div>
@@ -816,7 +879,7 @@
             I'd like to hear about it.
           </p>
           <div class="contact-links">
-            <a class="btn btn-primary" href="mailto:hello@example.com">Get in touch</a>
+            <a class="btn btn-primary" href="mailto:hello@wildforager.org">hello@wildforager.org</a>
             <a class="btn btn-ghost" href="https://github.com/franasal" target="_blank" rel="noreferrer">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub
