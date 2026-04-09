@@ -782,7 +782,7 @@
       .nav-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
       .header-right { width: 100%; justify-content: space-between; }
       .nav-links { gap: 1rem; }
-      .hero { padding-top: 7rem; min-height: auto; }
+      .hero { padding-top: 10.5rem; min-height: auto; }
       .project-section { padding: 4rem 0; }
       .phone-mockup { width: 220px; }
     }
@@ -872,7 +872,7 @@
               </p>
               <p class="project-role" id="role-schlacht">
                 Meine Rolle: Backend-Architektur, Datenpipeline, Datenbankstruktur und API-Entwicklung in Zusammenarbeit mit
-                <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#d4735a;font-weight:600;">FABA e.V.</a>.
+                <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#D1E19B;font-weight:600;">FABA e.V.</a>.
               </p>
               <div class="tag-row" id="tags-schlacht">
                 <span class="tag">Vue.js</span>
@@ -930,7 +930,7 @@
               </div>
               <div class="project-actions">
                 <a class="project-link" href="https://wildforager.org/" target="_blank" rel="noreferrer" id="link-forager">
-                  Projekt ansehen <span>&rarr;</span>
+                  Project website
                 </a>
                 <a class="btn-android" href="https://play.google.com/store/apps/details?id=com.wild_forager" target="_blank" rel="noreferrer" id="btn-android">
                   <svg width="20" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1144,9 +1144,10 @@
         projectsIntro: 'Ausgewählte Projekte',
         labelSchlacht: 'Datenplattform',
         descSchlacht: 'Eine datengetriebene Plattform, die öffentliche Daten über die Schlachtindustrie in Deutschland bündelt, darunter Unternehmensstrukturen, Standortinformationen, Kapazitäten und Berichte in einer durchsuchbaren Karte und Datenbank.',
-        roleSchlacht: 'Meine Rolle: Backend-Architektur, Datenpipeline, Datenbankstruktur und API-Entwicklung in Zusammenarbeit mit <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#d4735a;font-weight:600;">FABA e.V.</a>.',
+        roleSchlacht: 'Meine Rolle: Backend-Architektur, Datenpipeline, Datenbankstruktur und API-Entwicklung in Zusammenarbeit mit <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#D1E19B;font-weight:600;">FABA e.V.</a>.',
         tagsSchlacht: '<span class="tag">Vue.js</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">MariaDB</span><span class="tag">Docker</span><span class="tag">Datenvisualisierung</span><span class="tag">Public-interest tech</span>',
         linkProject: 'Projekt ansehen <span>&rarr;</span>',
+        linkForager: 'Project website',
         labelForager: 'App',
         descForager: 'Eine mobile Lern-App für essbare Wildpflanzen in Deutschland. Sie verbindet Biodiversitätsbeobachtungen, Pflanzenprofile, Saisonalität und Warnungen vor Verwechslungen, um sorgfältiges, ortsbezogenes Lernen zu unterstützen.',
         roleForager: 'Meine Rolle: Konzept, App-Entwicklung, Inhaltsstruktur und sicherheitsorientierte UX.',
@@ -1202,9 +1203,10 @@
         projectsIntro: 'Selected projects',
         labelSchlacht: 'Data Platform',
         descSchlacht: 'A data-driven platform bringing together public data on the slaughter industry in Germany, including company structures, site information, capacities, and reports in a searchable map and database.',
-        roleSchlacht: 'My role: backend architecture, data pipeline, database structure, and API development in collaboration with <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#d4735a;font-weight:600;">FABA e.V.</a>.',
+        roleSchlacht: 'My role: backend architecture, data pipeline, database structure, and API development in collaboration with <a href="https://faba-konzepte.de/" target="_blank" rel="noreferrer" style="color:#D1E19B;font-weight:600;">FABA e.V.</a>.',
         tagsSchlacht: '<span class="tag">Vue.js</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">MariaDB</span><span class="tag">Docker</span><span class="tag">Data visualization</span><span class="tag">Public-interest tech</span>',
         linkProject: 'Visit project <span>&rarr;</span>',
+        linkForager: 'Project website',
         labelForager: 'Mobile App',
         descForager: 'A mobile learning app for edible wild plants in Germany. It combines biodiversity observations, plant profiles, seasonality, and look-alike warnings to support careful, place-based learning.',
         roleForager: 'My role: concept, app development, content structure, and safety-focused UX.',
@@ -1262,6 +1264,7 @@
       roleSchlacht: 'role-schlacht',
       tagsSchlacht: 'tags-schlacht',
       linkProject: 'link-schlacht',
+      linkForager: 'link-forager',
       labelForager: 'label-forager',
       descForager: 'desc-forager',
       roleForager: 'role-forager',
@@ -1311,7 +1314,6 @@
         el.innerHTML = copy[key];
       });
       document.getElementById('link-schlacht').innerHTML = copy.linkProject;
-      document.getElementById('link-forager').innerHTML = copy.linkProject;
       document.getElementById('link-bullerbyn').innerHTML = copy.linkProject;
       document.getElementById('link-datax').innerHTML = copy.linkProject;
       const brandIcon = document.querySelector('.brand-icon');
